@@ -54,7 +54,7 @@
 #define JOYSTICK_DIVISOR 40.0       // ジョイスティック用調整用
 
 // OLED設定
-#define OLED_DEFAULT true           // true: レイヤー表示, false: 数値表示
+#define OLED_DEFAULT false          // true: レイヤー表示, false: 数値表示
 #define INTERRUPT_TIME 600          // OLED割り込み時間
 
 // RGBレイヤーデフォルト
