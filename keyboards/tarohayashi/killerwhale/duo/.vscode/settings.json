@@ -1,5 +1,8 @@
 {
     "files.associations": {
         "add_joystick.h": "c"
-    }
+    },
+    // 勝手に修正されて差分でないようにする
+    "files.insertFinalNewline": false,
+    "files.trimTrailingWhitespace": false
 }
