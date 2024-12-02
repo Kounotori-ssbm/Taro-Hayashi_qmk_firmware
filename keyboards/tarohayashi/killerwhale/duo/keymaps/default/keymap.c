@@ -126,6 +126,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(UTIL, KC_E):
+        case LT(MOUSE, KC_LNG2):
             return true;
         default:
             return false;
