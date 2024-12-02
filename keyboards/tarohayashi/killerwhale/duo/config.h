@@ -31,7 +31,7 @@
 #define INVERT_SCROLL_DEFAULT false          // スクロールの反転
 
 // スローモード時カーソル速度
-#define CPI_SLOW 300
+#define CPI_SLOW 400
 #define AMP_SLOW 4.0
 
 // オートマウスの設定
