@@ -217,7 +217,7 @@ report_mouse_t pointing_device_scrolling(bool is_left, double x_rev, double y_re
 
     // スクロール反転処理
     if(!kw_config.inv_sc ){
-        x_rev = -1.0 * x_rev;
+        x_rev = x_rev; // 縦と横のスクロールは正負逆の方が直感的なので `-1.0 *` を消している
         y_rev = -1.0 * y_rev;
     }
 
