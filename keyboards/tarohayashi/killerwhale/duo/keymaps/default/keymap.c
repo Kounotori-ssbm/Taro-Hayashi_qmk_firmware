@@ -136,7 +136,8 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 // https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#hold-on-other-key-press
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LT(4, KC_GRAVE):
+        case LT(LOWER, KC_GRAVE):
+        case LT(MOUSE, KC_ENT):
         case LCTL_T(KC_SPACE):
             return true;
         default:
