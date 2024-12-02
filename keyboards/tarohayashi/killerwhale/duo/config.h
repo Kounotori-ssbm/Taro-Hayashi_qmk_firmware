@@ -18,8 +18,8 @@
 
 // CPI = 600 + spd * 300 / AMP = 16.0 + (double)spd * 3.0
 #define SPD_OPTION_MAX    7 // 固定: 最大値
-#define SPD_DEFAULT_LEFT  3
-#define SPD_DEFAULT_RIGHT 3
+#define SPD_DEFAULT_LEFT  0
+#define SPD_DEFAULT_RIGHT 0
 
 // 角度 = angle * 12
 #define ANGLE_OPTION_MAX    29 // 固定: 最大値
@@ -31,7 +31,7 @@
 #define INVERT_SCROLL_DEFAULT false          // スクロールの反転
 
 // スローモード時カーソル速度
-#define CPI_SLOW 400
+#define CPI_SLOW 3000
 #define AMP_SLOW 4.0
 
 // オートマウスの設定
