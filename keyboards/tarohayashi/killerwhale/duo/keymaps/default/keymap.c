@@ -51,6 +51,15 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
 
 
 // [Kounotori カスタマイズ]
+// 0.23.9 にはあったが消されているレイヤーの列挙型定義の復活
+enum layer_number {
+    BASE = 0,
+    ONOFF, OFFON, ONON,                  // トグルスイッチで変更するレイヤー
+    LOWER, UPPER, UTIL,                  // 長押しで変更するレイヤー
+    MOUSE, BALL_SETTINGS, LIGHT_SETTINGS // 自動マウスレイヤー切り替えや設定用のレイヤー
+};
+
+// [Kounotori カスタマイズ]
 // https://github.com/qmk/qmk_firmware/blob/master/docs/custom_quantum_functions.md#programming-the-behavior-of-any-keycode-idprogramming-the-behavior-of-any-keycode
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (detected_host_os() == OS_MACOS || detected_host_os() == OS_IOS) {
