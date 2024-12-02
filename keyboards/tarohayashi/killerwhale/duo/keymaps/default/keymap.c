@@ -3,7 +3,7 @@
 
 #include QMK_KEYBOARD_H
 #include "lib/add_keycodes.h"
-
+#include "os_detection.h"
 
 // キーマップの設定
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -49,3 +49,17 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     }
 };
 
+// [Kounotori カスタマイズ]
+// https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#hold-on-other-key-press
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(4, KC_BACKSLASH):
+        case LT(5, KC_SPACE):
+            return !(detected_host_os() == OS_MACOS || detected_host_os() == OS_IOS); // Windows のみ有効
+        case LT(4, KC_GRAVE):
+        case LCTL_T(KC_SPACE):
+            return (detected_host_os() == OS_MACOS || detected_host_os() == OS_IOS); // Mac のみ有効
+        default:
+            return false;
+    }
+}
