@@ -38,7 +38,7 @@
 #define AUTO_MOUSE_DEFAULT true     // デフォルトのオン/オフ
 #define AUTO_MOUSE_DEFAULT_LAYER 7  // 使用レイヤー
 #define AUTO_MOUSE_THRESHOLD 80     // オートマウスが反応する移動量
-#define AUTO_MOUSE_TIME  750        // レイヤー切り替え時間
+#define AUTO_MOUSE_TIME  380        // レイヤー切り替え時間
 #define AUTO_MOUSE_DEBOUNCE 40      // 再度オートマウスさせるまでの時間
 #define AUTO_MOUSE_DELAY 750        // 一般ボタン使用時のオートマウスオフ時間
 
