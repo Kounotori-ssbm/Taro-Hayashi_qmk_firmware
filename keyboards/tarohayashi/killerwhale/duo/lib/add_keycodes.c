@@ -156,7 +156,9 @@ bool process_record_addedkeycodes(uint16_t keycode, keyrecord_t *record) {
                 if (detected_host_os() == OS_MACOS || detected_host_os() == OS_IOS){
                     register_code(KC_LSFT);
                     register_code(KC_LGUI);
+                    register_code(KC_LCTL); // [Kounotorni] クリップボードに保存するため Mac では Control も入力するよう改変
                     tap_code(KC_4);
+                    unregister_code(KC_LCTL); // [Kounotorni] クリップボードに保存するため Mac では Control も入力するよう改変
                     unregister_code(KC_LGUI);
                     unregister_code(KC_LSFT);
                 } else {
