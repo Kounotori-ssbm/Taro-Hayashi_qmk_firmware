@@ -14,12 +14,12 @@
 // 入力モードデフォルト
 // KEY_INPUT / CURSOR_MODE / SCROLL_MODE
 #define MODE_DEFAULT_LEFT CURSOR_MODE
-#define MODE_DEFAULT_RIGHT CURSOR_MODE
+#define MODE_DEFAULT_RIGHT SCROLL_MODE
 
 // CPI = 600 + spd * 300 / AMP = 16.0 + (double)spd * 3.0
 #define SPD_OPTION_MAX    7 // 固定: 最大値
-#define SPD_DEFAULT_LEFT  3
-#define SPD_DEFAULT_RIGHT 3
+#define SPD_DEFAULT_LEFT  0
+#define SPD_DEFAULT_RIGHT 0
 
 // 角度 = angle * 12
 #define ANGLE_OPTION_MAX    29 // 固定: 最大値
@@ -31,14 +31,14 @@
 #define INVERT_SCROLL_DEFAULT false          // スクロールの反転
 
 // スローモード時カーソル速度
-#define CPI_SLOW 300
+#define CPI_SLOW 2700
 #define AMP_SLOW 4.0
 
 // オートマウスの設定
 #define AUTO_MOUSE_DEFAULT true     // デフォルトのオン/オフ
 #define AUTO_MOUSE_DEFAULT_LAYER 7  // 使用レイヤー
 #define AUTO_MOUSE_THRESHOLD 80     // オートマウスが反応する移動量
-#define AUTO_MOUSE_TIME  750        // レイヤー切り替え時間
+#define AUTO_MOUSE_TIME  380        // レイヤー切り替え時間
 #define AUTO_MOUSE_DEBOUNCE 40      // 再度オートマウスさせるまでの時間
 #define AUTO_MOUSE_DELAY 750        // 一般ボタン使用時のオートマウスオフ時間
 
@@ -54,7 +54,7 @@
 #define JOYSTICK_DIVISOR 40.0       // ジョイスティック用調整用
 
 // OLED設定
-#define OLED_DEFAULT true           // true: レイヤー表示, false: 数値表示
+#define OLED_DEFAULT false          // true: レイヤー表示, false: 数値表示
 #define INTERRUPT_TIME 600          // OLED割り込み時間
 
 // RGBレイヤーデフォルト
