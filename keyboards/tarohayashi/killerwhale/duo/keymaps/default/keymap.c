@@ -67,18 +67,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-        case LT(LOWER, KC_GRAVE):
-            if (!record->tap.count) {
-                return true; // Hold の場合はそのまま処理
-            }
-
-            // Tap の場合は日本語配列設定の Windows でキーコードと入力されるキーを一致させる
-            if (record->event.pressed) {
-                register_code(KC_BACKSLASH);
-            } else {
-                unregister_code(KC_BACKSLASH);
-            }
-            return false; // Skip all further processing of this key
         case LCTL_T(KC_SPACE):
             if (record->tap.count) {
                 return true; // Tap の場合はそのまま処理
@@ -89,13 +77,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_on(UPPER);
             } else {
                 layer_off(UPPER);
-            }
-            return false;
-        case KC_BACKSLASH:
-            if (record->event.pressed) {
-                register_code(KC_INTERNATIONAL_3); // 日本語配列設定の Windows でキーコードと入力されるキーを一致させる
-            } else {
-                unregister_code(KC_INTERNATIONAL_3);
             }
             return false;
         case KC_MISSION_CONTROL:
@@ -114,6 +95,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_LWIN);
             }
             return false;
+        // KC_GRAVE/KC_BACKSLASH を KC_BACKSLASH/KC_INTERNATIONAL_3 扱いにする対応は Windows 10 では必要だったが 11 では入力文字がキーコードと一致するため不要になった (なお KC_INTERNATIONAL_3 は何も入力されなくなった)
+        // case LT(LOWER, KC_GRAVE):
+        //     if (!record->tap.count) {
+        //         return true; // Hold の場合はそのまま処理
+        //     }
+        
+        //     // Tap の場合は日本語配列設定の Windows でキーコードと入力されるキーを一致させる
+        //     if (record->event.pressed) {
+        //         register_code(KC_BACKSLASH);
+        //     } else {
+        //         unregister_code(KC_BACKSLASH);
+        //     }
+        //     return false; // Skip all further processing of this key
+        // case KC_BACKSLASH:
+        //     if (record->event.pressed) {
+        //         register_code(KC_INTERNATIONAL_3); // 日本語配列設定の Windows でキーコードと入力されるキーを一致させる
+        //     } else {
+        //         unregister_code(KC_INTERNATIONAL_3);
+        //     }
+        //     return false;
         default:
             return true; // Process all other keycodes normally
     }
