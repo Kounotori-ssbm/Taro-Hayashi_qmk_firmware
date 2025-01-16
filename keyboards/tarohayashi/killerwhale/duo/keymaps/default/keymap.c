@@ -182,3 +182,16 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
         ENCODER_CCW_CW(UG_HUEU, UG_HUED),
     },
 };
+
+// [Kounotori カスタマイズ]
+// https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#hold-on-other-key-press
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(LOWER, KC_GRAVE):
+        case LT(MOUSE, KC_ENT):
+        case LCTL_T(KC_SPACE):
+            return true;
+        default:
+            return false;
+    }
+}

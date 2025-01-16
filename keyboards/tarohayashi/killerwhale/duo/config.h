@@ -71,8 +71,8 @@
 // 斜め入力防止のデフォルト
 #define DPAD_EX_DEFAULT true
 
-
-
+// [Kounotori カスタマイズ]
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
 
 
