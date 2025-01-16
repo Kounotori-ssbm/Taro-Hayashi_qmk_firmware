@@ -195,3 +195,26 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 }
+
+// [Kounotori カスタマイズ]
+// https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#tapping-term
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(UTIL, KC_E):
+            return 300;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
+// [Kounotori カスタマイズ]
+// https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#permissive-hold
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(UTIL, KC_E):
+        case LT(MOUSE, KC_LNG2):
+            return true;
+        default:
+            return false;
+    }
+}
