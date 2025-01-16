@@ -3,6 +3,7 @@
 
 #include QMK_KEYBOARD_H
 #include "lib/add_keycodes.h"
+#include "os_detection.h"
 
 // レイヤー名
 enum layer_number {
@@ -216,5 +217,66 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
             return true;
         default:
             return false;
+    }
+}
+
+// [Kounotori カスタマイズ]
+// https://github.com/qmk/qmk_firmware/blob/master/docs/custom_quantum_functions.md#programming-the-behavior-of-any-keycode-idprogramming-the-behavior-of-any-keycode
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (detected_host_os() == OS_MACOS || detected_host_os() == OS_IOS) {
+        return true; // Mac では今のところ手を加えるものはない
+    }
+
+    switch (keycode) {
+        case LCTL_T(KC_SPACE):
+            if (record->tap.count) {
+                return true; // Tap の場合はそのまま処理
+            }
+
+            // Hold の場合は Control 再現レイヤー扱いにする
+            if (record->event.pressed) {
+                layer_on(UPPER);
+            } else {
+                layer_off(UPPER);
+            }
+            return false;
+        case KC_MISSION_CONTROL:
+            if (record->event.pressed) {
+                register_code(KC_LWIN);
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+                unregister_code(KC_LWIN);
+            }
+            return false;
+        case KC_LAUNCHPAD:
+            if (record->event.pressed) {
+                register_code(KC_LWIN);
+            } else {
+                unregister_code(KC_LWIN);
+            }
+            return false;
+        // KC_GRAVE/KC_BACKSLASH を KC_BACKSLASH/KC_INTERNATIONAL_3 扱いにする対応は Windows 10 では必要だったが 11 では入力文字がキーコードと一致するため不要になった (なお KC_INTERNATIONAL_3 は何も入力されなくなった)
+        // case LT(LOWER, KC_GRAVE):
+        //     if (!record->tap.count) {
+        //         return true; // Hold の場合はそのまま処理
+        //     }
+        
+        //     // Tap の場合は日本語配列設定の Windows でキーコードと入力されるキーを一致させる
+        //     if (record->event.pressed) {
+        //         register_code(KC_BACKSLASH);
+        //     } else {
+        //         unregister_code(KC_BACKSLASH);
+        //     }
+        //     return false; // Skip all further processing of this key
+        // case KC_BACKSLASH:
+        //     if (record->event.pressed) {
+        //         register_code(KC_INTERNATIONAL_3); // 日本語配列設定の Windows でキーコードと入力されるキーを一致させる
+        //     } else {
+        //         unregister_code(KC_INTERNATIONAL_3);
+        //     }
+        //     return false;
+        default:
+            return true; // Process all other keycodes normally
     }
 }
